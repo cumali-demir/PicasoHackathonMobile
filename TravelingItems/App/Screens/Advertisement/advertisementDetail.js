@@ -14,13 +14,13 @@ export default class Advertise extends React.Component {
         );
     }
 
+    static navigationOptions = {
+        title: 'Advertisement Details',
+    };
 
     render() {
         return(
             <View style={{backgroundColor : '#9fffb1',flex : 1}}>
-                <View style={styles.headerStyle}>
-                    <Text style={{color: '#f8f8f8',fontSize: 20}}>Advertisement Details</Text>
-                </View>
                 {this.Item("Weight : ")}
                 {this.Item("Category : ")}
                 {this.Item("Commission :")}
