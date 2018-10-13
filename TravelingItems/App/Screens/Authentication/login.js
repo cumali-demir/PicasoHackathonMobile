@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, TouchableOpacity,AsyncStorage, StyleSheet, Text, View,TextInput} from 'react-native';
+import {Platform, TouchableOpacity,AsyncStorage,Image, StyleSheet, Text, View,TextInput} from 'react-native';
+
 import {LoadingIndicator} from '../../Components/loadingIndicator'
 import {NavigationActions,StackActions} from "react-navigation";
 import * as service from "../../Services/services"
 export default class Login extends React.Component {
 
-    static navigationOptions = {
-        header: null
-    };
+
 
     constructor(props){
         super(props);
@@ -23,31 +22,25 @@ export default class Login extends React.Component {
 
 
 
-    login(){
-        let {username,password} = this.state;
+    login() {
+        let {username, password} = this.state;
 
-        this.setState({loading:true});
+        this.setState({loading: true});
 
-        service.Services.login(username,password).then(
-             token =>
-            {
-                        this.setState({loading: false,error:false});
-                        const resetAction = StackActions.reset({
-                            index: 0,
-                            actions: [NavigationActions.navigate({ routeName: 'Main' })],
-                        });
-                        this.props.navigation.dispatch(resetAction);
+        service.Services.login(username, password).then(
+            token => {
+                this.setState({loading: false, error: false});
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({routeName: 'Main'})],
+                });
+                this.props.navigation.dispatch(resetAction);
 
             },
             error => {
-                this.setState({loading: false, error: true})
+                alert(error)
             }
         )
-    }
-
-    componentDidMount(){
-
-
     }
 
     render() {
@@ -58,6 +51,7 @@ export default class Login extends React.Component {
 
                 <View style={styles.container}>
 
+
                     <TextInput   style={styles.textInput}
                                  value={username}
                                  placeholder='username'
@@ -67,12 +61,13 @@ export default class Login extends React.Component {
 
                     <TextInput   value={password}
                                  style={styles.textInput}
-                                 placeholder='Şifre'
+                                 placeholder='Password'
                                  secureTextEntry={true}
                                  onChangeText={ text => this.setState({ password: text })}/>
 
                     <TouchableOpacity style={styles.button} onPress={()=>this.login()}>
                         <Text style={styles.text}>Giris Yap</Text>
+
                     </TouchableOpacity>
 
                 </View>
@@ -86,28 +81,38 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        justifyContent: 'center',
         backgroundColor:'white'
     },
     container:{
-        backgroundColor:'gray'  ,
+        backgroundColor:'#fedcc9'  ,
         flex:1,
         justifyContent:'center',
 
     },
     button:{
+        marginTop: 8,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:"blue",
-        height:50
+        backgroundColor:'#f82110',
+        height:70
     },
     text:{
-        color:"white"
+        color:"#f8c8b1",
+        fontSize:19
     },
     textInput:{
-        height:40,
-        backgroundColor:'white',
+
+        height:55,
+        backgroundColor:'#f8ad8a',
         margin:5,
-    }
+        borderRadius:5
+    },
+    iconStyle: {
+        margin: 5,
+        height: 250,
+        width: 350,
+        borderRadius:8
+
+    },
 
 });

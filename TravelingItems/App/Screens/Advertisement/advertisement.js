@@ -43,7 +43,7 @@ export default class Advertisement extends React.Component {
         let user = row.user
 
         return(
-            <TouchableOpacity style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'yellow',borderRadius:5,alignItems:'center'}}>
+            <TouchableOpacity style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'#f8a876',borderRadius:5,alignItems:'center'}}>
 
                 <View style={{padding:5,justifyContent:'center',alignItems:'center',justifyContent:'space-between'}}>
                     <Image style={{height:50,width:50,borderRadius:25}} source={require('../../Images/Image2.png')}/>
@@ -51,7 +51,7 @@ export default class Advertisement extends React.Component {
                 </View>
 
                 <View style={{flex:1,padding:10}}>
-                    <View style={{backgroundColor:'red'}}>
+                    <View style={{backgroundColor:'#f2ecf8',margin:2,borderRadius: 2 }}>
                         <Text>{row.title}</Text>
                         <Text>{row.declaration}</Text>
                         <Text>{category}</Text>
@@ -60,6 +60,7 @@ export default class Advertisement extends React.Component {
                     <View style={{backgroundColor:'blue',flexDirection:'row',justifyContent:'space-between'}}>
                         <Text style={{backgroundColor:'white'}}>{row.budget}</Text>
                         {/*<Text style={{backgroundColor:'white'}}>{row.availableSpaces}</Text>*/}
+
                     </View>
 
                 </View>
@@ -81,7 +82,7 @@ export default class Advertisement extends React.Component {
         return (
             <LoadingWrapper loading={loading} error={error}>
                 <View style={styles.root}>
-                    <View style={styles.searchBarView}>
+                    <View>
                         <TextInput   autoCorrect={false}
                                      onChangeText={
                                          (searchText) =>{
@@ -109,14 +110,14 @@ export default class Advertisement extends React.Component {
 
 
 const styles = StyleSheet.create({
+
     root: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor:'white'
-
+        backgroundColor: '#eff8e0',
     },
     list:{
-        backgroundColor: 'green',
+        backgroundColor: '#eff8e0',
         paddingVertical: 8,
         paddingHorizontal: 14
     },
@@ -127,12 +128,10 @@ const styles = StyleSheet.create({
         margin: 5
     },
     searchBar: {
-        // margin:15,
-        backgroundColor: 'blue',
+        margin:5,
+        backgroundColor: '#96bf74',
         borderRadius:10,
     },
-    searchBarView:{
-        backgroundColor:'red',
-    },
+
 
 });

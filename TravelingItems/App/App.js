@@ -1,21 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-//   android:
-//     'Double tap TestCommit R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
-//
-// type Props = {};
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator,createDrawerNavigator} from 'react-navigation';
@@ -35,15 +17,15 @@ const Drawer = createDrawerNavigator({
     Advertise:{//ilanver
         screen: Advertise
     },
-    // Profile:{
-    //     screen:Profile
-    // },
-    // LogOut: {
-    //     screen:LogOut
-    // },
-    // AdvertisementDetail : {
-    //     screen : advertisementDetail
-    // }
+    Profile:{
+        screen:Profile
+    },
+    LogOut: {
+        screen:LogOut
+    },
+    AdvertisementDetail : {
+        screen : advertisementDetail
+    }
 
 },{
     drawerOpenRoute: 'DrawerOpen',
@@ -55,10 +37,16 @@ const Drawer = createDrawerNavigator({
 const MyApp = createStackNavigator({
 
     Login:{
-      screen: Login
+        screen: Login,
+        navigationOptions: () => ({
+            headerStyle: {backgroundColor: 'yellow'},
+            title: `Siparislerim`,
+            headerLeft: null
+
+        }),
     },
     Main:{
-      screen: Drawer,
+        screen: Drawer,
     },
     MyOrder:{
         screen:MyOrder,
@@ -86,28 +74,28 @@ const MyApp = createStackNavigator({
 export default class App extends React.Component {
 
     render() {
-    return (
+        return (
 
-        <MyApp/>
-    );
-  }
+            <MyApp/>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
 });

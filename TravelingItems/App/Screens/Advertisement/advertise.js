@@ -21,6 +21,7 @@ export default class Advertise extends React.Component {
         }
     }
 
+
     componentDidMount(){
 
         this.setState({loading:true});
@@ -37,6 +38,7 @@ export default class Advertise extends React.Component {
         )
 
     }
+
 
     fillParams(text,rowID){
 
@@ -58,9 +60,9 @@ export default class Advertise extends React.Component {
                 break;
         }
 
-
     }
     renderRow(row, sectionID, rowID){
+
 
         var value = '';
         return(
@@ -111,5 +113,6 @@ const styles = {
         backgroundColor: 'green',
         paddingVertical: 8,
         paddingHorizontal: 14
+
     }
 };
