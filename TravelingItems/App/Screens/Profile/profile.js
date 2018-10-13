@@ -14,10 +14,10 @@ export default class Profile extends React.Component {
 
         return(
 
-            <View style={{flex:1,borderWidth:0.5,backgroundColor:'white',bordercolor:'gray',height:50, borderRadius:6,justifyContent:'center',margin:5}}>
+            <View style={{flex:1,borderWidth:0.5,backgroundColor:'white',bordercolor:'#d6d6d6',height:50, borderRadius:6,justifyContent:'center',margin:5}}>
 
 
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity style={{backgroundColor: '#f8ccac'}} onPress={()=>{
                     console.log("tik tik");
                     this.props.navigation.navigate("MyOrder")}}>
 
@@ -66,13 +66,14 @@ const styles = StyleSheet.create({
 
     },
     image:{
+        marginTop : 9,
         flex:1,
         width:Dimensions.get('window').width,
         // height:Dimensions.get('window').width* 2/3,
-        backgroundColor:'red'
+        backgroundColor:'red',
     },
     list:{
-        backgroundColor: 'green',
+        backgroundColor: '#f8e4db',
         paddingVertical: 8,
         paddingHorizontal: 14
     },

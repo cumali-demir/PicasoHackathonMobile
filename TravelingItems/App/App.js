@@ -42,7 +42,7 @@ const Drawer = createDrawerNavigator({
         screen:LogOut
     },
     AdvertisementDetail : {
-        screen : advertisementDetail
+        screen : advertisementDetail,
     }
 
 },{
@@ -77,8 +77,8 @@ const MyApp = createStackNavigator({
 },{
     headerMode: 'screen',
     navigationOptions: ({navigation}) => ({
-        headerStyle: {backgroundColor: 'green'},
-        title: 'Logged In to your app!',
+        headerStyle: {backgroundColor: '#e09cf8'},
+        title: 'Yerim Var',
         headerLeft: <Text onPress={() => navigation.toggleDrawer()}>Menu</Text>
     })
 });

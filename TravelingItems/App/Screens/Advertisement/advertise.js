@@ -3,18 +3,6 @@ import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,Picker,Image
 
 export default class Advertise extends React.Component {
 
-
-
-    /*
-    <TextInput style={{fontSize: 18}}
-                               secureTextEntry
-                               placeholder="Şifrenizi girin"
-                               onChangeText={(password) => this.setState({password})}
-
-                    />
-     */
-
-
    constructor(props) {
        super(props);
        this.state = {
@@ -26,37 +14,16 @@ export default class Advertise extends React.Component {
         return(
             <View style={styles.containerStyle}>
 
-               <View style={styles.headerStyle}>
-                  <Text style={styles.buttonTextStyle}>Advertise</Text>
-               </View>
+                <TextInput placeholder="How many kilograms are you bring?"
+                      style={styles.textInputStyle}/>
 
-                <TextInput placeholder="How many kilograms are you bring?"/>
-                <Picker selectedValue={this.state.pickerValue}
-                        onValueChange={(itemValue) => this.setState(
-                            {pickerValue: itemValue})}
-                >
-                    <Picker.Item label='Teknoloji' value='hepsi'/>
-                    <Picker.Item label='Giyim' value='dolu'/>
-                </Picker>
-
-                <TextInput  placeholder="Komisyon"/>
-                <TextInput  placeholder="Bütçe"/>
-
-
+                <TextInput  placeholder="Comission"
+                            style={styles.textInputStyle}/>
+                <TextInput  placeholder="Price"
+                            style={styles.textInputStyle}/>
 
                 <View>
 
-                        <TouchableOpacity  style={styles.buttonStyle}>
-                            <Text style={styles.textStyle}>From Where</Text>
-                        </TouchableOpacity>
-                   <TouchableOpacity>
-                    <Image style={styles.iconStyle}
-                           source={require('../../icons/images.png')}/>
-                   </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.buttonStyle}>
-                            <Text style={styles.textStyle}>To Where</Text>
-                         </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonStyle}>
                         <Text style={styles.buttonTextStyle } >Advertise Now</Text>
@@ -96,9 +63,14 @@ const styles = {
     },
     textInputStyle: {
         fontSize : 20,
-        height: 20,
+        fontColor: '#f8f8f8',
         backgroundColor : '#f8f8bb',
-        borderRadius : 3
+        borderRadius : 3,
+        borderRadius:5,
+        margin: 5,
+        backgroundColor:'#e7e6e3',
+        borderColor:'#aaa9a6',
+        color: '#eae9e6'
     },
     iconStyle: {
         alignSelf: 'stretch',
@@ -113,6 +85,12 @@ const styles = {
     },
     textStyle: {
         fontSize: 18
+    },
+    pickerStyle:{
+        borderRadius:5,
+        margin: 5,
+        backgroundColor:'#948cf8',
+        borderColor:'#eb98f8'
     }
 
 }
