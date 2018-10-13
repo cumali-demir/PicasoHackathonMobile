@@ -22,15 +22,17 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
+import Main from './Screens/Main/main'
+
 
 
 let MyApp = createStackNavigator({
     Login:{
       screen: Login
     },
-    // SignUp:{
-    //   screen: "Will Create"
-    // },
+    SignUp:{
+      screen: Main
+    },
     // ForgotPassword:{
     //   screen: "Will Create"
     // },
