@@ -35,15 +35,15 @@ const Drawer = createDrawerNavigator({
     Advertise:{//ilanver
         screen: Advertise
     },
-    Profile:{
-        screen:Profile
-    },
-    LogOut: {
-        screen:LogOut
-    },
-    AdvertisementDetail : {
-        screen : advertisementDetail
-    }
+    // Profile:{
+    //     screen:Profile
+    // },
+    // LogOut: {
+    //     screen:LogOut
+    // },
+    // AdvertisementDetail : {
+    //     screen : advertisementDetail
+    // }
 
 },{
     drawerOpenRoute: 'DrawerOpen',

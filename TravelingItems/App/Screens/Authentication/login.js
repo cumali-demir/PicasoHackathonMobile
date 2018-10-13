@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, TouchableOpacity, StyleSheet, Text, View,TextInput} from 'react-native';
+import {Platform, TouchableOpacity,AsyncStorage, StyleSheet, Text, View,TextInput} from 'react-native';
 import {LoadingIndicator} from '../../Components/loadingIndicator'
 import {NavigationActions,StackActions} from "react-navigation";
 import * as service from "../../Services/services"
@@ -17,35 +17,39 @@ export default class Login extends React.Component {
             password:''
         };
 
-        this.navigateMain = this.navigateMain.bind(this)
+        this.login = this.login.bind(this);
     }
 
 
 
 
+    login(){
+        let {username,password} = this.state;
 
-
-    navigateMain(username,password){
+        this.setState({loading:true});
 
         service.Services.login(username,password).then(
-            success => {
-                const resetAction = StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: 'Main' })],
-                });
-                this.props.navigation.dispatch(resetAction);
+             token =>
+            {
+                        this.setState({loading: false,error:false});
+                        const resetAction = StackActions.reset({
+                            index: 0,
+                            actions: [NavigationActions.navigate({ routeName: 'Main' })],
+                        });
+                        this.props.navigation.dispatch(resetAction);
+
             },
             error => {
-                alert(error)
+                this.setState({loading: false, error: true})
             }
         )
-
-        // const resetAction = StackActions.reset({
-        //     index: 0,
-        //     actions: [NavigationActions.navigate({ routeName: 'Main' })],
-        // });
-        // this.props.navigation.dispatch(resetAction);
     }
+
+    componentDidMount(){
+
+
+    }
+
     render() {
         let { username, password,loading } = this.state;
 
@@ -56,7 +60,7 @@ export default class Login extends React.Component {
 
                     <TextInput   style={styles.textInput}
                                  value={username}
-                                 placeholder='e-mail'
+                                 placeholder='username'
                                  onChangeText={ text => this.setState({ username: text })}/>
 
                     <LoadingIndicator loading={loading}/>
@@ -67,7 +71,7 @@ export default class Login extends React.Component {
                                  secureTextEntry={true}
                                  onChangeText={ text => this.setState({ password: text })}/>
 
-                    <TouchableOpacity style={styles.button} onPress={()=>this.navigateMain()}>
+                    <TouchableOpacity style={styles.button} onPress={()=>this.login()}>
                         <Text style={styles.text}>Giris Yap</Text>
                     </TouchableOpacity>
 
