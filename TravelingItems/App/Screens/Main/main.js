@@ -10,26 +10,79 @@ export default class Main extends React.Component {
         this.state = {
             username:'',
             password:''
-        }
+        };
+
+
+        let dummy = [{
+            image:require('../../Images/Image2.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image3.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image4.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image5.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image6.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image7.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image8.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image9.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image11.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        },{
+            image:require('../../Images/Image12.png'),
+            name:"Name ",
+            title:"MyTitle",
+            myCategories:'',
+            budget:''
+        }]
     }
 
     render() {
-        let { username, password,loading } = this.state;
-
+        
         return (
             <View style={styles.container}>
-                <TextInput   style={styles.textInput}
-                             value={username}
-                             placeholder='e-mail'
-                             onChangeText={ text => this.setState({ username: text })}/>
 
-                {/*<LoadingIndicator loading={loading}/>*/}
 
-                <TextInput   value={password}
-                             style={styles.textInput}
-                             placeholder='Şifre'
-                             secureTextEntry={true}
-                             onChangeText={ text => this.setState({ password: text })}/>
+
             </View>
         );
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TextInput} from 'react-native';
+import {Platform, TouchableOpacity, StyleSheet, Text, View,TextInput} from 'react-native';
 import {LoadingIndicator} from '../../Components/loadingIndicator'
 
 export default class Login extends React.Component {
@@ -11,25 +11,39 @@ export default class Login extends React.Component {
             username:'',
             password:''
         }
+
+        this.navigateMain = this.navigateMain.bind(this)
     }
 
+    navigateMain(){
+        this.props.navigation.navigate("Main")
+    }
     render() {
         let { username, password,loading } = this.state;
 
         return (
-            <View style={styles.container}>
-                <TextInput   style={styles.textInput}
-                             value={username}
-                             placeholder='e-mail'
-                             onChangeText={ text => this.setState({ username: text })}/>
+            <View style={styles.root}>
 
-                {/*<LoadingIndicator loading={loading}/>*/}
+                <View style={styles.container}>
 
-                <TextInput   value={password}
-                             style={styles.textInput}
-                             placeholder='Şifre'
-                             secureTextEntry={true}
-                             onChangeText={ text => this.setState({ password: text })}/>
+                    <TextInput   style={styles.textInput}
+                                 value={username}
+                                 placeholder='e-mail'
+                                 onChangeText={ text => this.setState({ username: text })}/>
+
+                    <LoadingIndicator loading={loading}/>
+
+                    <TextInput   value={password}
+                                 style={styles.textInput}
+                                 placeholder='Şifre'
+                                 secureTextEntry={true}
+                                 onChangeText={ text => this.setState({ password: text })}/>
+
+                    <TouchableOpacity style={styles.button} onPress={()=>this.navigateMain()}>
+                        <Text style={styles.text}>Giris Yap</Text>
+                    </TouchableOpacity>
+
+                </View>
             </View>
         );
     }
@@ -38,17 +52,30 @@ export default class Login extends React.Component {
 
 
 const styles = StyleSheet.create({
-    container: {
+    root: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor:'white'
+    },
+    container:{
+        backgroundColor:'gray'  ,
+        flex:1,
+        justifyContent:'center',
 
+    },
+    button:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:"blue",
+        height:50
+    },
+    text:{
+        color:"white"
     },
     textInput:{
         height:40,
-        backgroundColor:'gray',
-        padding:5,
-        margin: 5
+        backgroundColor:'white',
+        margin:5,
     }
 
 });

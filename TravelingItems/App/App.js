@@ -30,7 +30,7 @@ let MyApp = createStackNavigator({
     Login:{
       screen: Login
     },
-    SignUp:{
+    Main:{
       screen: Main
     },
     // ForgotPassword:{
