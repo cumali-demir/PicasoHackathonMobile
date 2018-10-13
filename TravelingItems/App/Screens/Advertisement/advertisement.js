@@ -3,7 +3,12 @@ import {Platform,Image, TouchableOpacity,ListView,StyleSheet, Text, View,TextInp
 
 export default class Advertisement extends React.Component {
 
+    static navigationOptions = ({navigation}) => {
 
+        return {
+            title: "ILANLAR"
+        }
+    };
 
     constructor(props){
         super(props);
