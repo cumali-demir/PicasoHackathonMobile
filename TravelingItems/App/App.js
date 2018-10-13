@@ -24,7 +24,7 @@ import {createStackNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
 
 
-let myApp = createStackNavigator({
+let MyApp = createStackNavigator({
     Login:{
       screen: Login
     },
@@ -39,17 +39,11 @@ let myApp = createStackNavigator({
     // }
 
 });
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
 
         <MyApp/>
-
-        {/*<Text style={styles.welcome}>Welcome to React Native!</Text>*/}
-        {/*<Text style={styles.instructions}>To get started, edit App.js</Text>*/}
-        {/*<Text style={styles.instructions}>{instructions}</Text>*/}
-      </View>
     );
   }
 }

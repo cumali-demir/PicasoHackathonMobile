@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,TextInput} from 'react-native';
-import LoadingIndicator from '../../Components/loadingIndicator'
+import {LoadingIndicator} from '../../Components/loadingIndicator'
 
-export default class Login extends Component<Props> {
+export default class Login extends React.Component {
 
     constructor(props){
-        super(props)
+        super(props);
+
+        this.state = {
+            username:'',
+            password:''
+        }
     }
 
     render() {
@@ -13,14 +18,15 @@ export default class Login extends Component<Props> {
 
         return (
             <View style={styles.container}>
-                <TextInput   value={username}
+                <TextInput   style={styles.textInput}
+                             value={username}
                              placeholder='e-mail'
-                             secureTextEntry={true}
-                             onChangeText={ text => this.setState({ email: text })}/>
+                             onChangeText={ text => this.setState({ username: text })}/>
 
-                <LoadingIndicator loading={loading}/>
+                {/*<LoadingIndicator loading={loading}/>*/}
 
                 <TextInput   value={password}
+                             style={styles.textInput}
                              placeholder='Şifre'
                              secureTextEntry={true}
                              onChangeText={ text => this.setState({ password: text })}/>
@@ -35,11 +41,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor:'white'
+
     },
     textInput:{
         height:40,
+        backgroundColor:'gray',
+        padding:5,
+        margin: 5
     }
 
 });
