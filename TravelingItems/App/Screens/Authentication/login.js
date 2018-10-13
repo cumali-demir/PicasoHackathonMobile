@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,TextInput} from 'react-native';
-
+import LoadingIndicator from '../../Components/loadingIndicator'
 
 export default class Login extends Component<Props> {
 
@@ -17,6 +17,8 @@ export default class Login extends Component<Props> {
                              placeholder='e-mail'
                              secureTextEntry={true}
                              onChangeText={ text => this.setState({ email: text })}/>
+
+                <LoadingIndicator loading={loading}/>
 
                 <TextInput   value={password}
                              placeholder='Şifre'
