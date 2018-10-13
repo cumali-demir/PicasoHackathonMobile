@@ -16,23 +16,24 @@
 //
 // type Props = {};
 
-
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
-import Main from './Screens/Main/main'
+import { Screen } from './Screen' ;
+import {Advertisements} from "./Screens/DrawerNavigator/Advertisements";
+import Main from "./Screens/Main/main";
 import { DrawerNavigator } from 'react-navigation';
-import { Advertise } from './Screens/DrawerNavigator/Advertise';
-import { Advertisements } from './Screens/DrawerNavigator/Advertisements';
-import { LogOut }from './Screens/DrawerNavigator/LogOut';
-import { Profile }from './Screens/DrawerNavigator/Profile';
+import {Advertise} from "./Screens/DrawerNavigator/Advertise";
+import {LogOut} from "./Screens/DrawerNavigator/LogOut";
+import {Profile} from "./Screens/DrawerNavigator/Profile";
 
 
-const x = DrawerNavigator({
+let Drawer = DrawerNavigator({
 
-
+    Main : {
+        screen:Main
+    },
     Advertisements: {
         screen:Advertisements
     },
@@ -44,17 +45,19 @@ const x = DrawerNavigator({
     },
     Profile:{
         screen:Profile
-    }
+    },
 
 });
 
 
-let MyApp = createStackNavigator({
+
+const MyApp = createStackNavigator({
+
     Login:{
       screen: Login
     },
     Main:{
-      screen: Main
+      screen:Screen
     },
     // ForgotPassword:{
     //   screen: "Will Create"
@@ -64,8 +67,10 @@ let MyApp = createStackNavigator({
     // }
 
 });
+
 export default class App extends React.Component {
-  render() {
+
+    render() {
     return (
 
         <MyApp/>
