@@ -79,7 +79,7 @@ const MyApp = createStackNavigator({
     navigationOptions: ({navigation}) => ({
         headerStyle: {backgroundColor: 'green'},
         title: 'Logged In to your app!',
-        //headerLeft: <Text onPress={() => navigation.toggleDrawer()}>Menu</Text>
+        headerLeft: <Text onPress={() => navigation.toggleDrawer()}>Menu</Text>
     })
 });
 

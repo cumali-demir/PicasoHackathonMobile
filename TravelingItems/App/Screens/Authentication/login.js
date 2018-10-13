@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, TouchableOpacity, StyleSheet, Text, View,TextInput} from 'react-native';
 import {LoadingIndicator} from '../../Components/loadingIndicator'
 import {NavigationActions,StackActions} from "react-navigation";
-
+import * as service from "../../Services/services"
 export default class Login extends React.Component {
 
     static navigationOptions = {
@@ -15,7 +15,7 @@ export default class Login extends React.Component {
         this.state = {
             username:'',
             password:''
-        }
+        };
 
         this.navigateMain = this.navigateMain.bind(this)
     }
@@ -25,13 +25,26 @@ export default class Login extends React.Component {
 
 
 
-    navigateMain(){
+    navigateMain(username,password){
 
-        const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Main' })],
-        });
-        this.props.navigation.dispatch(resetAction);
+        service.Services.login(username,password).then(
+            success => {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Main' })],
+                });
+                this.props.navigation.dispatch(resetAction);
+            },
+            error => {
+                alert(error)
+            }
+        )
+
+        // const resetAction = StackActions.reset({
+        //     index: 0,
+        //     actions: [NavigationActions.navigate({ routeName: 'Main' })],
+        // });
+        // this.props.navigation.dispatch(resetAction);
     }
     render() {
         let { username, password,loading } = this.state;
