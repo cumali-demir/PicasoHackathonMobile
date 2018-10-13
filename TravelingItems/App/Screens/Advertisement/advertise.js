@@ -1,6 +1,8 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Picker, Image, ListView} from 'react-native';
+import {Platform, ScrollView,StyleSheet, Text, View, TextInput, TouchableOpacity, Picker, Image, ListView} from 'react-native';
 import * as Services from "../../Services/services"
+import {LoadingIndicator} from '../../Components/loadingIndicator'
+
 export default class Advertise extends React.Component {
 
 
@@ -11,14 +13,18 @@ export default class Advertise extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            text:[],
+            uuppss:[],
             title:"",
-            declaration:"",
+            usDeclaration:"",
             endDate:"",
-            budget:"",
-            availableSpace:"",
+            budget:0,
+            availableSpace:0,
             categories:[],
             pickerValue:''
         }
+
+        this.saveAdvertise = this.saveAdvertise.bind(this)
     }
 
 
@@ -29,54 +35,57 @@ export default class Advertise extends React.Component {
         Services.Services.getCategories().then(
             categories=>{
                 this.setState({categories,loading:true,error:false})
-
             },
             error=>{
                 this.setState({loading:true,error:false})
-
             }
         )
 
     }
 
 
-    fillParams(text,rowID){
 
-        switch  (rowID) {
-            case 0:
-                this.setState({title:text});
-                break;
-            case 1:
-                this.setState({declaration:text});
-                break;
-            case 2:
-                this.setState({endDate:text});
-                break;
-            case 3:
-                this.setState({budget:text});
-                break;
-            case 4:
-                this.setState({availableSpace:text});
-                break;
-        }
+    saveAdvertise(){
 
-    }
-    renderRow(row, sectionID, rowID){
+        this.setState({loading:true});
+         let {uuppss} = this.state
+          console.log(uuppss);
+        Services.Services.getToken().then(
+            token=>{
+                    let gotIt = {
+                        token:token,
+                        title:uuppss[0],
+                        declaration:uuppss[1],
+                        end_date:new Date(2018, 2, 3, 10, 33, 30, 0),
+                        category:"5bc1fee6fb6fc0602744c8ae",
+                        city:"5bc204f1fb6fc0602744cc34",
+                        budget:parseInt(uuppss[3]),
+                        avaliableSpaces:parseInt(uuppss[4])
+                    }
 
-
-        var value = '';
-        return(
-            <View style={styles.container}>
-                <TextInput
-                           placeholder={row}
-                           autoCorrect={false}
-                           onEndEditing={ text => this.fillParams(text,rowID) } />
-            </View>
+                Services.Services.saveAdvertise(gotIt).then(
+                    success=>{
+                        this.setState({loading:false,error:false})
+                        alert("token okey, kayit okey")
+                    },error=>{
+                        this.setState({loading:false,error:true});
+                        alert("token okey, kaydedemedik")
+                    }
+                )
+            }
+        ).catch(
+            error=>{
+                this.setState({loading:false,error:true})
+                alert("token alamadik!")
+            }
         )
+
+
+
     }
 
     render() {
-        let {categories,pickerValue,params} = this.state;
+        let {categories,loading} = this.state;
 
         let dummy = ["Title","Declaration","End Date","Budget","Available Space"];
 
@@ -86,12 +95,30 @@ export default class Advertise extends React.Component {
 
 
         return(
-            <View style={styles.root}>
-                <ListView dataSource={data}
-                          renderRow={this.renderRow.bind(this)}
-                          enableEmptySections={true}
-                          style={styles.list} />
-            </View>
+            <ScrollView style={styles.root}>
+
+                {
+                    dummy.map((row, rowID) =>
+                        <View style={styles.container}>
+                            <TextInput
+                                value={this.state.uuppss[rowID]}
+                                placeholder={row}
+                                autoCorrect={false}
+                                onChangeText={text => {
+                                    let abc = this.state.uuppss;
+                                    abc[rowID] = text;
+                                    this.setState({uuppss:abc})
+                                } }/>
+                        </View>
+                    )
+                }
+                <LoadingIndicator loading={loading}/>
+
+                <TouchableOpacity onPress={()=>this.saveAdvertise()} style={{height:50,flex:1,backgroundColor:'yellow',justifyContent:'center',alignItems:'center'}}>
+                        <Text>Ilan Olustur</Text>
+                    </TouchableOpacity>
+
+            </ScrollView>
         );
     }
 }
@@ -100,6 +127,7 @@ export default class Advertise extends React.Component {
 const styles = {
     root : {
         flex : 1,
+
     },
     container :{
         height:50,
@@ -110,6 +138,7 @@ const styles = {
         borderRadius:6
     },
     list:{
+        flex:1,
         backgroundColor: 'green',
         paddingVertical: 8,
         paddingHorizontal: 14

@@ -28,20 +28,38 @@ export default class Login extends React.Component {
         this.setState({loading: true});
 
         service.Services.login(username, password).then(
-            token => {
-                this.setState({loading: false, error: false});
-                const resetAction = StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({routeName: 'Main'})],
-                });
-                this.props.navigation.dispatch(resetAction);
+            async token => {
+                    await service.Services.setToken(token).then(
+                        some=>{
+                            this.setState({loading: false, error: false});
+                            const resetAction = StackActions.reset({
+                                index: 0,
+                                actions: [NavigationActions.navigate({
+                                    routeName: 'Main',
+                                    params:{
+                                        token:token
+                                    }
+                                })],
+                            });
+                            this.props.navigation.dispatch(resetAction);
+                        }
+                    ).catch(
+                        thing=>{
+                            this.setState({loading: false, error: true});
+                            console.log("aq")
+                        }
+                    )
+
 
             },
             error => {
+                this.setState({loading: false, error: true});
                 alert(error)
             }
         )
     }
+
+
 
     render() {
         let { username, password,loading } = this.state;
@@ -67,7 +85,6 @@ export default class Login extends React.Component {
 
                     <TouchableOpacity style={styles.button} onPress={()=>this.login()}>
                         <Text style={styles.text}>Giris Yap</Text>
-
                     </TouchableOpacity>
 
                 </View>

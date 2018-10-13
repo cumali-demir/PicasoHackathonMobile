@@ -4,12 +4,11 @@ import * as MyServices from "../../Services/services"
 import {LoadingWrapper} from "../../Components/loadingWrapper";
 export default class Advertisement extends React.Component {
 
-    static navigationOptions = ({navigation}) => {
+    static navigationOptions = ({navigation, screenProps}) => {
+        const params = navigation.state.params || {};   // You can get the params here as navigation.state.params.paramsKey
 
-        return {
-            title: "ILANLAR"
-        }
-    };
+        console.log("CompareScreen product_id:", params.token);
+    }
 
     constructor(props){
         super(props);
@@ -39,8 +38,8 @@ export default class Advertisement extends React.Component {
 
     renderRow(row){
 
-        let category = row.category.name
-        let user = row.user
+        let category = row.category.name;
+        let user = row.user;
 
         return(
             <TouchableOpacity style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'#f8a876',borderRadius:5,alignItems:'center'}}>
@@ -60,7 +59,6 @@ export default class Advertisement extends React.Component {
                     <View style={{backgroundColor:'blue',flexDirection:'row',justifyContent:'space-between'}}>
                         <Text style={{backgroundColor:'white'}}>{row.budget}</Text>
                         {/*<Text style={{backgroundColor:'white'}}>{row.availableSpaces}</Text>*/}
-
                     </View>
 
                 </View>
@@ -78,6 +76,8 @@ export default class Advertisement extends React.Component {
 
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         let data = ds.cloneWithRows(advertise);
+
+
 
         return (
             <LoadingWrapper loading={loading} error={error}>

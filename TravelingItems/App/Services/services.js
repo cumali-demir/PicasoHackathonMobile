@@ -31,11 +31,7 @@ export const Services = {
     },
 
     getAdvertises() {
-        //
-        // let params = {
-        //     username:username,
-        //     password:password
-        // };
+
 
         return new Promise((resolve, reject) => {
             axios.get(constant + "advertise" )
@@ -48,15 +44,14 @@ export const Services = {
         });
     },
 
-    async setCurrentUser(username,password,token) {
+    async setToken(token) {
 
-        let user = {username:username,password:password,token:token};
 
-        console.log(user)
+
+        console.log(token)
         try {
-            await AsyncStorage.setItem('username',username );
-            await AsyncStorage.setItem('username',password );
-            await AsyncStorage.setItem('username',token );
+            await AsyncStorage.setItem('token',token );
+
 
         } catch (error) {
             console.log("SetCurrentUserHataSI")
@@ -64,24 +59,11 @@ export const Services = {
 
     },
 
-    async getCurrentUser() {
-        console.log("qqqqweeeee",JSON.parse(user.username));
+    async getToken() {
 
         try {
-            const username = await AsyncStorage.getItem('username');
-            const password = await AsyncStorage.getItem('password');
             const token = await AsyncStorage.getItem('token');
-
-            console.log("username",username);
-            console.log("password",username);
-            console.log("token",username);
-             let user = {
-                 username:username,
-                 password:password,
-                 token:token
-             };
-
-             return user
+             return token
         } catch (error) {
             console.log("getUser ERROR LOCAL")
             return null
@@ -102,6 +84,27 @@ export const Services = {
                         resolve(data.categories)
                     }else{
                         reject(data.message)
+                    }
+
+                }, error => reject(error));
+        });
+    },
+
+    saveAdvertise(params){
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/advertise/create",params )
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        //resolve(data.token)
+                    }else{
+                        console.log(params)
+                        console.log("aaaa")
+                        //reject(data.message)
                     }
 
                 }, error => reject(error));
