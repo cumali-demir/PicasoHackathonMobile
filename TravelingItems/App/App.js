@@ -24,6 +24,7 @@ import Advertise from "./Screens/Advertisement/advertise";
 import Advertisement from "./Screens/Advertisement/advertisement";
 import LogOut from "./Screens/Authentication/logOut";
 import Profile from "./Screens/Profile/profile";
+import advertisementDetail from "./Screens/Advertisement/advertisementDetail"
 
 
 let Drawer = DrawerNavigator({
@@ -39,6 +40,9 @@ let Drawer = DrawerNavigator({
     LogOut: {
         screen:LogOut
     },
+    AdvertisementDetail : {
+        screen : advertisementDetail
+    }
 
 });
 
