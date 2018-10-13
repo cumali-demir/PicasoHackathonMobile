@@ -15,12 +15,12 @@ export default class Advertise extends React.Component {
     }
 
     static navigationOptions = {
-        title: 'Advertisement Details',
+
     };
 
     render() {
         return(
-            <View style={{backgroundColor : '#9fffb1',flex : 1}}>
+            <View style={{backgroundColor : '#f1f3f8',flex : 1}}>
                 {this.Item("Weight : ")}
                 {this.Item("Category : ")}
                 {this.Item("Commission :")}
@@ -34,9 +34,10 @@ export default class Advertise extends React.Component {
 const styles = {
     ItemStyle : {
         height : 50,
-        backgroundColor : '#5ec1f8',
+        backgroundColor : '#a3f8bb',
         borderRadius:2,
         margin: 3,
+        marginTop: 5,
         justifyContent :'center'
     },
     headerStyle : {

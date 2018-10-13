@@ -34,7 +34,7 @@ export default class Advertise extends React.Component {
         ]
         const ds = new ListView.DataSource({rowHasChanged : (r1 ,r2) => r1 !== r2});
 
-        let  dataSource= ds.cloneWithRows(array);
+        const  dataSource= ds.cloneWithRows(array);
 
 
         return(
