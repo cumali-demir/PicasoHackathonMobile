@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, TouchableOpacity, StyleSheet, Text, View,TextInput} from 'react-native';
 import {LoadingIndicator} from '../../Components/loadingIndicator'
+import {NavigationActions,StackActions} from "react-navigation";
 
 export default class Login extends React.Component {
 
@@ -25,7 +26,12 @@ export default class Login extends React.Component {
 
 
     navigateMain(){
-        this.props.navigation.navigate("Main")
+
+        const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Main' })],
+        });
+        this.props.navigation.dispatch(resetAction);
     }
     render() {
         let { username, password,loading } = this.state;

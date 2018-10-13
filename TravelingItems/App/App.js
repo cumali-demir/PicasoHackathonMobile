@@ -44,16 +44,20 @@ let Drawer = DrawerNavigator({
         screen : advertisementDetail
     }
 
+},{
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle',
 });
 
 
 const MyApp = createStackNavigator({
 
-    // Login:{
-    //   screen: Login
-    // },
+    Login:{
+      screen: Login
+    },
     Main:{
-      screen:() => <Drawer screenProps={this.props}/>
+      screen:Drawer
     },
     // ForgotPassword:{
     //   screen: "Will Create"
@@ -62,7 +66,14 @@ const MyApp = createStackNavigator({
     //   screen: "Will Create"
     // }
 
-},{headerMode: 'none'});
+},{
+    headerMode: 'float',
+    navigationOptions: ({navigation}) => ({
+        headerStyle: {backgroundColor: 'green'},
+        title: 'Logged In to your app!',
+        headerLeft: <Text onPress={() => navigation.toggleDrawer()}>Menu</Text>
+    })
+});
 
 export default class App extends React.Component {
 
