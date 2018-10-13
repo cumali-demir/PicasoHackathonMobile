@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform,Image, ListView,StyleSheet, Text, View,TextInput} from 'react-native';
 
-export default class Main extends React.Component {
+export default class Advertisement extends React.Component {
 
 
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
-export class Advertise extends React.Component {
+export default class Profile extends React.Component {
     render() {
         return(
             <View>
-                <Text>----</Text>
+                <Text>uyuyuy</Text>
             </View>
         );
     }

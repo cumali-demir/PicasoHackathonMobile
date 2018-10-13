@@ -18,37 +18,29 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator,DrawerNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
-import { Screen } from './Screen' ;
-import {Advertisements} from "./Screens/DrawerNavigator/Advertisements";
-import Main from "./Screens/Main/main";
-import { DrawerNavigator } from 'react-navigation';
-import {Advertise} from "./Screens/DrawerNavigator/Advertise";
-import {LogOut} from "./Screens/DrawerNavigator/LogOut";
-import {Profile} from "./Screens/DrawerNavigator/Profile";
+import Advertise from "./Screens/Advertisement/advertise";
+import Advertisement from "./Screens/Advertisement/advertisement";
+import LogOut from "./Screens/Authentication/logOut";
+import Profile from "./Screens/Profile/profile";
 
 
 let Drawer = DrawerNavigator({
-
-    Main : {
-        screen:Main
+    Advertisements: {//ilanlar
+        screen:Advertisement
     },
-    Advertisements: {
-        screen:Advertisements
-    },
-    Advertise:{
+    Advertise:{//ilanver
         screen: Advertise
-    },
-    LogOut: {
-        screen:LogOut
     },
     Profile:{
         screen:Profile
     },
+    LogOut: {
+        screen:LogOut
+    },
 
 });
-
 
 
 const MyApp = createStackNavigator({
@@ -57,7 +49,7 @@ const MyApp = createStackNavigator({
       screen: Login
     },
     Main:{
-      screen:Screen
+      screen:() => <Drawer screenProps={this.props}/>
     },
     // ForgotPassword:{
     //   screen: "Will Create"
@@ -66,7 +58,7 @@ const MyApp = createStackNavigator({
     //   screen: "Will Create"
     // }
 
-});
+},{headerMode: 'none'});
 
 export default class App extends React.Component {
 
