@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform,Image, ListView,StyleSheet, Text, View,TextInput} from 'react-native';
+import {Platform,Image, TouchableOpacity,ListView,StyleSheet, Text, View,TextInput} from 'react-native';
 
 export default class Advertisement extends React.Component {
 
@@ -17,22 +17,26 @@ export default class Advertisement extends React.Component {
 
 
         return(
-            <View style={{flex:1}}>
+            <TouchableOpacity style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'yellow',borderRadius:5,alignItems:'center'}}>
 
-                <View>
-                    <Image source={row.image}/>
+                <View style={{padding:5,justifyContent:'center',alignItems:'center',justifyContent:'space-between'}}>
+                    <Image style={{height:50,width:50,borderRadius:25}} source={row.image}/>
                     <Text>{row.name}</Text>
                 </View>
 
-                <View>
-                    <Text>r{row.title}</Text>
-                        <View>
-                            <Text>{row.budget}</Text>
-                        </View>
+                <View style={{flex:1,padding:10}}>
+                    <View style={{backgroundColor:'red'}}>
+                        <Text>{row.title}</Text>
+                    </View>
+
+                    <View style={{backgroundColor:'blue',flexDirection:'row',justifyContent:'space-between'}}>
+                        <Text style={{backgroundColor:'white'}}>{row.budget}</Text>
+                        <Text style={{backgroundColor:'white'}}>{row.availableSpace}</Text>
+                    </View>
 
                 </View>
 
-            </View>
+            </TouchableOpacity>
         )
 
     }
@@ -44,61 +48,71 @@ export default class Advertisement extends React.Component {
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image3.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image4.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image5.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image6.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image7.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image8.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image9.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image11.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         },{
              image:require('../../Images/Image12.png'),
             name:"Name ",
             title:"MyTitle",
             myCategories:'',
-            budget:''
+            budget:'asjdhbasfj',
+            availableSpace:'25'
         }]
         let {loading,error} = this.state;
 

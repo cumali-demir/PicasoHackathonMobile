@@ -45,9 +45,9 @@ let Drawer = DrawerNavigator({
 
 const MyApp = createStackNavigator({
 
-    Login:{
-      screen: Login
-    },
+    // Login:{
+    //   screen: Login
+    // },
     Main:{
       screen:() => <Drawer screenProps={this.props}/>
     },
