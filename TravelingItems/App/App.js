@@ -24,8 +24,8 @@ import Advertise from "./Screens/Advertisement/advertise";
 import Advertisement from "./Screens/Advertisement/advertisement";
 import LogOut from "./Screens/Authentication/logOut";
 import Profile from "./Screens/Profile/profile";
-import advertisementDetail from "./Screens/Advertisement/advertisementDetail"
-
+import advertisementDetail from "./Screens/Advertisement/advertisementDetail";
+import notifications from "./Screens/Advertisement/notifications";
 
 let Drawer = DrawerNavigator({
     Advertisements: {//ilanlar
@@ -42,6 +42,9 @@ let Drawer = DrawerNavigator({
     },
     AdvertisementDetail : {
         screen : advertisementDetail
+    },
+    Notifications: {
+        screen : notifications
     }
 
 },{
