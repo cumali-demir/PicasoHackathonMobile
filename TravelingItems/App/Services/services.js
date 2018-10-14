@@ -160,7 +160,7 @@ export const Services = {
                     let success = data.success;
                     if (success){
                         console.log(response);
-                        resolve(data)
+                        resolve(data.offer)
                     }else{
                         reject(data.message)
                     }

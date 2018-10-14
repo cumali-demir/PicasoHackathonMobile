@@ -20,6 +20,7 @@ export default class MyOrders extends React.Component {
         super(props);
         this.state={
             offers:'',
+            backgroundColor:'',
         }
     }
 
@@ -27,18 +28,33 @@ export default class MyOrders extends React.Component {
 
         console.log("MYROW",row);
 
+        // switch (row.status) {
+        //     case 0:
+        //         this.setState({backgroundColor:'gray'});
+        //         break;
+        //     case 1:
+        //         this.setState({backgroundColor:'blue'});
+        //         break;
+        //     case 2:
+        //         this.setState({backgroundColor:'red'});
+        //         break;
+        // }
 
         return(
 
             <TouchableOpacity onPress={()=>{}}
-                              style={[styles.row,{backgorundColor:row.status
-                                      ? row.status == 1
-                                          ? "red"
-                                          : "blue"
-                                      :"yellow" }]} >
-                <View  style={{flex:1,borderWidth:0.5,backgroundColor:'white',bordercolor:'gray',height:80, borderRadius:6,justifyContent:'center',margin:5}}>
+                              style={{backgroundColor:"white",flex:1}} >
+                <View  style={{flex:1,borderWidth:0.5,backgroundColor:
+                        row.status
+                        ? row.status == 1
+                            ? "red"
+                            :"blue"
+                        : "yellow" ,bordercolor:'gray',height:80, borderRadius:6,justifyContent:'center',margin:5}}>
                     <Text style={{fontSize:20,padding:5}}>
-                        advertise title: {row.status}
+                        advertise title: {row.advertiseID.title}
+                    </Text>
+                    <Text style={{fontSize:20,padding:5}}>
+                        advertise title: {row.advertiseID.declaration}
                     </Text>
                     <Text style={{fontSize:20,padding:5}}>
                         Budget {row.advertiseID.budget}
@@ -87,14 +103,12 @@ export default class MyOrders extends React.Component {
         return(
             <LoadingWrapper loading={loading} error={error} >
                 <View style={styles.root}>
-                    <View style={{flex:3,backgroundColor:'black'}}>
                         <ListView dataSource={data}
                                   enableEmptySections={true}
                                                renderRow={this.renderRow.bind(this)}
                                                enableEmptySections={true}
                                                style={styles.list} />
 
-                    </View>
                 </View>
             </LoadingWrapper>
         );
@@ -112,11 +126,12 @@ const styles = StyleSheet.create({
         backgroundColor:'white'
     },
     list:{
+        flex:1,
         backgroundColor: 'green',
         paddingVertical: 8,
         paddingHorizontal: 14
     },
     row:{
-
+       // backgroundColor:this.state.backgroundColor,
     }
 });
