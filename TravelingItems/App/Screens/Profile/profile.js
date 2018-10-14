@@ -19,7 +19,9 @@ export default class Profile extends React.Component {
 
                 <TouchableOpacity style={{backgroundColor: '#f8ccac'}} onPress={()=>{
                     console.log("tik tik");
-                    this.props.navigation.navigate("MyOrder")}}>
+                    this.props.navigation.navigate("MyOrders",{token:this.props.navigation.state.params.token})
+
+                    }}>
 
                     <Text style={{fontSize:20,padding:5}}>
                         {row}

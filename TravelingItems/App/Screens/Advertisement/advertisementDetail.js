@@ -1,50 +1,137 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, View,TextInput,TouchableOpacity,Picker,Image} from 'react-native';
+import {Platform, ScrollView,StyleSheet, Text, View,TextInput,TouchableOpacity,Picker,Image} from 'react-native';
+import * as MyServices from "../../Services/services"
+import {LoadingIndicator} from '../../Components/loadingIndicator'
 
 export default class Advertise extends React.Component {
+
+    static navigationOptions = ({navigation, screenProps}) => {
+        const params = navigation.state.params || {};   // You can get the params here as navigation.state.params.paramsKey
+
+        console.log("CompareScreen product_id:", params.adv);
+        console.log("token:", params.token);
+    }
+
     constructor(props){
         super(props);
+        this.state={
+            offer:0,
+            commission: "",
+            product:'',
+            notes:''
+        }
+        this.makeOffer = this.makeOffer.bind(this)
     }
 
-    Item(params) {
-        return(
-            <View style={styles.ItemStyle}>
-                <Text style={{marginLeft : 8, fontSize : 18}}>{params}</Text>
-            </View>
-        );
+
+    makeOffer(adv){
+        let params = {
+            token:this.props.navigation.state.params.token,
+            advertiseID:adv._id,
+            price:this.state.offer,
+            product:this.state.product,
+            note:this.state.notes,
+        };
+        console.log(params);
+        this.setState({loading:true});
+        MyServices.Services.giveOffer(params).then(
+            success =>{
+                this.setState({error:false,loading:false});
+                alert("basarili")
+
+            },error=>{
+                this.setState({error:true,loading:false});
+                alert(error)
+            }
+        )
+
+
     }
-
-    static navigationOptions = {
-
-    };
 
     render() {
+        let advertisement = this.props.navigation.state.params.adv;
+        let {loading} = this.state
+        console.log("asd",advertisement);
         return(
-            <View style={{backgroundColor : '#f1f3f8',flex : 1}}>
-                {this.Item("Weight : ")}
-                {this.Item("Category : ")}
-                {this.Item("Commission :")}
-                {this.Item("Price : ")}
-            </View>
+            <ScrollView style={styles.root}>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Ilan veren Kisinin Adı {advertisement.user.name}</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Kisinin Yeterli Yeri {advertisement.avaliableSpaces} kg</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Butcesi {advertisement.budget}</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Ilan Basligi {advertisement.title}</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Ilan Aciklamasi {advertisement.declaration}</Text>
+                </View>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Bitis Tarihi {advertisement.end_date}</Text>
+                </View>
+
+                <View style={styles.container}>
+                    <TextInput   placeholder={"Ne almak istiyorsunuz?"}
+                                 style={styles.textInput}
+                                 onChangeText={ text => this.setState({ product: text })}
+                                 value={this.state.text}/>
+                </View>
+
+                <View style={styles.container}>
+                    <TextInput   placeholder={"Notunuz varmi?"}
+                                 style={styles.textInput}
+                                 onChangeText={ text => this.setState({ notes: text })}
+                                 value={this.state.notes}/>
+                </View>
+
+
+                <View style={styles.container}>
+                    <TextInput   placeholder={"fiyar icin odemek istediginiz tutari giriniz"}
+                                 style={styles.textInput}
+                                 keyboardType='numeric'
+                                 onChangeText={ text => this.setState({ offer: parseInt(text) })}
+                                 value={this.state.offer}/>
+                </View>
+
+                <View style={styles.container}>
+                    <Text style={styles.text}>{this.state.offer ? this.state.offer * 0.2 : 0}</Text>
+                </View>
+
+                <LoadingIndicator loading={loading}/>
+
+                <TouchableOpacity style={styles.button} onPress={()=>this.makeOffer(advertisement)}>
+                    <Text style={{textAlign:'center',fontSize:30}}>Teklif Ver</Text>
+                </TouchableOpacity>
+
+
+            </ScrollView>
 
         );
     }
 }
 
 const styles = {
-    ItemStyle : {
-        height : 50,
-        backgroundColor : '#a3f8bb',
-        borderRadius:2,
-        margin: 3,
-        marginTop: 5,
-        justifyContent :'center'
-    },
-    headerStyle : {
-        height : 70,
-        backgroundColor : '#6560f8',
-        borderRadius:2,
-        marginBottom : 20 ,
-        justifyContent :'center'
+    root:{
+        flex:1,
+        backgroundColor:'red'
+
+    },text:{
+        fontSize:30,
+        flex:1
+
+    },container:{
+        backgroundColor:'white',
+        height:50,
+        justifyContent:'center',
+        margin:5
+    },button:{
+        height:50,
+        backgroundColor:"yellow",
+        justifyContent:'center',
+        alignItems:'center',
     }
-}
+
+};

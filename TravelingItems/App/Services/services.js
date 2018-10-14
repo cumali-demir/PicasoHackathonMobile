@@ -45,10 +45,7 @@ export const Services = {
     },
 
     async setToken(token) {
-
-
-
-        console.log(token)
+        console.log(token);
         try {
             await AsyncStorage.setItem('token',token );
 
@@ -100,15 +97,78 @@ export const Services = {
                     let success = data.success;
                     if (success){
                         console.log(response);
-                        //resolve(data.token)
+                        resolve(data.token)
                     }else{
-                        console.log(params)
-                        console.log("aaaa")
-                        //reject(data.message)
+                        reject(data.message)
                     }
 
                 }, error => reject(error));
         });
-    }
+    },
 
+    giveOffer(params){
+
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/offer/create",params )
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        resolve(data)
+                    }else{
+                        reject(data.message)
+                    }
+
+                }, error => reject(error));
+        });
+
+    },
+
+    getMyAdvertises(token){
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/advertise/user",{token})
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        resolve(data.token)
+                    }else{
+                        reject(data.message)
+                    }
+
+                }, error => {
+                    console.log("bu hata ne hatasi acaba");
+                    reject(error)
+                })
+        });
+
+    },
+
+    getMyOffers(token){
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/offer/user",{token})
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        resolve(data)
+                    }else{
+                        reject(data.message)
+                    }
+
+                }, error => {
+                    console.log("bu hata ne hatasi acaba");
+                    reject(error)
+                })
+        });
+    }
 }

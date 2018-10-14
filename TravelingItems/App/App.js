@@ -4,10 +4,13 @@ import {createStackNavigator,createDrawerNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
 import Advertise from "./Screens/Advertisement/advertise";
 import Advertisement from "./Screens/Advertisement/advertisement";
+import AdvertisementDetail from "./Screens/Advertisement/advertisementDetail";
+
 import LogOut from "./Screens/Authentication/logOut";
 import Profile from "./Screens/Profile/profile";
-import advertisementDetail from "./Screens/Advertisement/advertisementDetail"
-import MyOrder from "./Screens/Profile/multiModal"
+import MyOrders from "./Screens/Profile/myOrders"
+import MyAdvertises from "./Screens/Profile/myAdvertises"
+
 
 
 const Drawer = createDrawerNavigator({
@@ -23,9 +26,7 @@ const Drawer = createDrawerNavigator({
     LogOut: {
         screen:LogOut
     },
-    AdvertisementDetail : {
-        screen : advertisementDetail
-    }
+
 
 },{
     drawerOpenRoute: 'DrawerOpen',
@@ -48,13 +49,31 @@ const MyApp = createStackNavigator({
     Main:{
         screen: Drawer,
     },
-    MyOrder:{
-        screen:MyOrder,
+    MyOrders:{
+        screen:MyOrders,
         navigationOptions: () => ({
             headerStyle: {backgroundColor: 'yellow'},
             title: `Siparislerim`,
+            headerLeft: ''
         }),
     },
+    MyAdvertisements:{
+        screen:MyAdvertises,
+        navigationOptions: () => ({
+            headerStyle: {backgroundColor: 'blue'},
+            title: `Ilanlarim`,
+            headerLeft: ''
+        }),
+    },
+    AdvertisementDetail:{
+        screen:AdvertisementDetail,
+        navigationOptions: (navigation) => ({
+            headerStyle: {backgroundColor: 'green'},
+            title: 'Ilan Detay Sayfasi',
+            headerLeft: ''
+        }),
+    },
+
     // ForgotPassword:{
     //   screen: "Will Create"
     // },

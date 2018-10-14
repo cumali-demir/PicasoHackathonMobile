@@ -17,6 +17,7 @@ export default class Advertisement extends React.Component {
             error:'',
             advertise:[]
         };
+        this.goAdvDetail = this.goAdvDetail.bind(this)
     }
 
     componentDidMount(){
@@ -42,7 +43,7 @@ export default class Advertisement extends React.Component {
         let user = row.user;
 
         return(
-            <TouchableOpacity style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'#f8a876',borderRadius:5,alignItems:'center'}}>
+            <TouchableOpacity onPress={()=> this.goAdvDetail(row)} style={{flex:1,flexDirection:'row', margin:5,backgroundColor:'#f8a876',borderRadius:5,alignItems:'center'}}>
 
                 <View style={{padding:5,justifyContent:'center',alignItems:'center',justifyContent:'space-between'}}>
                     <Image style={{height:50,width:50,borderRadius:25}} source={require('../../Images/Image2.png')}/>
@@ -68,6 +69,10 @@ export default class Advertisement extends React.Component {
 
     }
 
+    goAdvDetail(row){
+        this.props.navigation.navigate("AdvertisementDetail",{adv:row,token:this.props.navigation.state.params.token})
+        // this.props.navigation.navigate("AdvertisementDetail")
+    }
 
     render() {
 

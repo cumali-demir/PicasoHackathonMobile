@@ -5,11 +5,6 @@ import {LoadingIndicator} from '../../Components/loadingIndicator'
 
 export default class Advertise extends React.Component {
 
-
-
-
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -34,10 +29,10 @@ export default class Advertise extends React.Component {
 
         Services.Services.getCategories().then(
             categories=>{
-                this.setState({categories,loading:true,error:false})
+                this.setState({categories,loading:false,error:false})
             },
             error=>{
-                this.setState({loading:true,error:false})
+                this.setState({loading:false,error:false})
             }
         )
 
@@ -48,24 +43,24 @@ export default class Advertise extends React.Component {
     saveAdvertise(){
 
         this.setState({loading:true});
-         let {uuppss} = this.state
-          console.log(uuppss);
+        let {uuppss} = this.state;
+        console.log(uuppss);
         Services.Services.getToken().then(
             token=>{
-                    let gotIt = {
-                        token:token,
-                        title:uuppss[0],
-                        declaration:uuppss[1],
-                        end_date:new Date(2018, 2, 3, 10, 33, 30, 0),
-                        category:"5bc1fee6fb6fc0602744c8ae",
-                        city:"5bc204f1fb6fc0602744cc34",
-                        budget:parseInt(uuppss[3]),
-                        avaliableSpaces:parseInt(uuppss[4])
-                    }
+                let gotIt = {
+                    token:token,
+                    title:uuppss[0],
+                    declaration:uuppss[1],
+                    end_date:new Date(2018, 2, 3, 10, 33, 30, 0),
+                    category:"5bc1fee6fb6fc0602744c8ae",
+                    city:"5bc204f1fb6fc0602744cc34",
+                    budget:parseInt(uuppss[3]),
+                    avaliableSpaces:parseInt(uuppss[4])
+                }
 
                 Services.Services.saveAdvertise(gotIt).then(
                     success=>{
-                        this.setState({loading:false,error:false})
+                        this.setState({loading:false,error:false});
                         alert("token okey, kayit okey")
                     },error=>{
                         this.setState({loading:false,error:true});
@@ -75,7 +70,7 @@ export default class Advertise extends React.Component {
             }
         ).catch(
             error=>{
-                this.setState({loading:false,error:true})
+                this.setState({loading:false,error:true});
                 alert("token alamadik!")
             }
         )
@@ -112,11 +107,12 @@ export default class Advertise extends React.Component {
                         </View>
                     )
                 }
-                <LoadingIndicator loading={loading}/>
 
                 <TouchableOpacity onPress={()=>this.saveAdvertise()} style={{height:50,flex:1,backgroundColor:'yellow',justifyContent:'center',alignItems:'center'}}>
-                        <Text>Ilan Olustur</Text>
-                    </TouchableOpacity>
+                    <Text>Ilan Olustur</Text>
+                </TouchableOpacity>
+
+                <LoadingIndicator loading={loading}/>
 
             </ScrollView>
         );
