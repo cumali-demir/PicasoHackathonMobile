@@ -31,7 +31,6 @@ export default class MyAdvertisesDetail extends React.Component {
         MyServices.Services.myAdvertiseDetail(token,_id).then(
             offerOwn=>{
                 this.setState({offerOwn,loading:false,error:false,});
-                alert("basardin")
             },
             error=>{
                 this.setState({loading:false,error:true});
@@ -45,11 +44,11 @@ export default class MyAdvertisesDetail extends React.Component {
         this.getData()
     }
 
-    applyOrReject(id,status){
+    applyOrReject(id,status,advertiseID){
         let token = this.props.navigation.state.params.token;
         this.setState({loading:true});
 
-        MyServices.Services.acceptOrNot(token,id,status).then(
+        MyServices.Services.acceptOrNot(token,id,advertiseID,status).then(
             success=>{
                 this.getData()
             },error=>{
@@ -69,13 +68,13 @@ export default class MyAdvertisesDetail extends React.Component {
             <View style={{flex:1,flexDirection:"row",backgroundColor:'cyan',height:50}}>
 
                 <TouchableOpacity style={{backgroundColor:"green",justifyContent:'center',alignItems:'center',flex:1,margin:5}} onPress={()=>{
-                   this.applyOrReject(row._id,1)
+                   this.applyOrReject(row._id,1,row.advertiseID._id)
                 }}>
                     <Text>KABUL ET</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={{backgroundColor:"red",justifyContent:'center',alignItems:'center',flex:1,margin:5}} onPress={()=>{
-                    this.applyOrReject(row._id,2)
+                    this.applyOrReject(row._id,2,row.advertiseID._id)
 
                 }}>
                     <Text style={{}}>REDDET</Text>
@@ -87,10 +86,10 @@ export default class MyAdvertisesDetail extends React.Component {
         let bottomInfo = (
             <View style={{flex:1,flexDirection:"row",backgroundColor:'cyan',height:50}}>
 
-                <View style={{backgroundColor:"green",borderRadius:10,justifyContent:'center',alignItems:'center',flex:1,margin:5}} onPress={()=>{
+                <View style={{backgroundColor:row.status == 1 ? "green" : "red",borderRadius:10,justifyContent:'center',alignItems:'center',flex:1,margin:5}} onPress={()=>{
 
                 }}>
-                    <Text>{row.status ? "Kabul Edildi" : "Red Edildi"}</Text>
+                    <Text>{row.status == 1 ? "Kabul Edildi" : "Red Edildi"}</Text>
                 </View>
 
 

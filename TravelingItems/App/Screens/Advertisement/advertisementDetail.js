@@ -37,7 +37,6 @@ export default class Advertise extends React.Component {
         MyServices.Services.giveOffer(params).then(
             success =>{
                 this.setState({error:false,loading:false});
-                alert("basarili")
 
             },error=>{
                 this.setState({error:true,loading:false});
@@ -55,22 +54,22 @@ export default class Advertise extends React.Component {
         return(
             <ScrollView style={styles.root}>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Ilan veren Kisinin Adı {advertisement.user.name}</Text>
+                    <Text style={styles.text}>Ilan veren Kisinin Adı: {advertisement.user.name}</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Kisinin Yeterli Yeri {advertisement.avaliableSpaces} kg</Text>
+                    <Text style={styles.text}>Kisinin Yeterli Yeri: {advertisement.avaliableSpaces} kg</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Butcesi {advertisement.budget}</Text>
+                    <Text style={styles.text}>Butcesi: {advertisement.budget}</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Ilan Basligi {advertisement.title}</Text>
+                    <Text style={styles.text}>Ilan Basligi: {advertisement.title}</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Ilan Aciklamasi {advertisement.declaration}</Text>
+                    <Text style={styles.text}>Ilan Aciklamasi: {advertisement.declaration}</Text>
                 </View>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Bitis Tarihi {advertisement.end_date}</Text>
+                    <Text style={styles.text}>Bitis Tarihi: {advertisement.end_date}</Text>
                 </View>
 
                 <View style={styles.container}>
@@ -103,7 +102,7 @@ export default class Advertise extends React.Component {
                 <LoadingIndicator loading={loading}/>
 
                 <TouchableOpacity style={styles.button} onPress={()=>this.makeOffer(advertisement)}>
-                    <Text style={{textAlign:'center',fontSize:30}}>Teklif Ver</Text>
+                    <Text style={{textAlign:'center',fontSize:30,color:"white"}}>Teklif Ver</Text>
                 </TouchableOpacity>
 
 
@@ -116,22 +115,27 @@ export default class Advertise extends React.Component {
 const styles = {
     root:{
         flex:1,
-        backgroundColor:'red'
-
+        backgroundColor:'gray'
     },text:{
-        fontSize:30,
-        flex:1
-
+        fontSize:20,
+    },textInput:{
+        fontSize:20,
     },container:{
         backgroundColor:'white',
         height:50,
         justifyContent:'center',
-        margin:5
+        alignItems:'center',
+        flex:1,
+        margin:5,
+        borderRadius:10,
     },button:{
+        margin:5,
         height:50,
-        backgroundColor:"yellow",
+        backgroundColor:"#87dcd6",
         justifyContent:'center',
         alignItems:'center',
+        borderRadius:10,
+
     }
 
 };

@@ -61,7 +61,6 @@ export default class Advertise extends React.Component {
                 Services.Services.saveAdvertise(gotIt).then(
                     success=>{
                         this.setState({loading:false,error:false});
-                        alert("token okey, kayit okey")
                     },error=>{
                         this.setState({loading:false,error:true});
                         alert("token okey, kaydedemedik")
@@ -71,7 +70,6 @@ export default class Advertise extends React.Component {
         ).catch(
             error=>{
                 this.setState({loading:false,error:true});
-                alert("token alamadik!")
             }
         )
 
@@ -97,6 +95,7 @@ export default class Advertise extends React.Component {
                         <View style={styles.container}>
                             <TextInput
                                 value={this.state.uuppss[rowID]}
+                                style={{fontSize:30}}
                                 placeholder={row}
                                 autoCorrect={false}
                                 onChangeText={text => {
@@ -108,8 +107,8 @@ export default class Advertise extends React.Component {
                     )
                 }
 
-                <TouchableOpacity onPress={()=>this.saveAdvertise()} style={{height:50,flex:1,backgroundColor:'yellow',justifyContent:'center',alignItems:'center'}}>
-                    <Text>Ilan Olustur</Text>
+                <TouchableOpacity onPress={()=>this.saveAdvertise()} style={{height:50,flex:1,backgroundColor:'#87dcd6',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={{fontSize:30,color:"white"}}>İlan Olustur</Text>
                 </TouchableOpacity>
 
                 <LoadingIndicator loading={loading}/>

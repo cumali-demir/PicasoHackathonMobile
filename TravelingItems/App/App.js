@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, TouchableOpacity,Image,StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator,createDrawerNavigator} from 'react-navigation';
 import Login from './Screens/Authentication/login'
 import Advertise from "./Screens/Advertisement/advertise";
@@ -44,7 +44,7 @@ const MyApp = createStackNavigator({
     Login:{
         screen: Login,
         navigationOptions: () => ({
-            headerStyle: {backgroundColor: 'yellow'},
+            headerStyle: {backgroundColor: '"white'},
             title: `Siparisler`,
             headerLeft: null
 
@@ -56,7 +56,6 @@ const MyApp = createStackNavigator({
     MyOrders:{
         screen:MyOrders,
         navigationOptions: () => ({
-            headerStyle: {backgroundColor: 'yellow'},
             title: `Siparislerim`,
             headerLeft: ''
         }),
@@ -64,7 +63,6 @@ const MyApp = createStackNavigator({
     MyAdvertisements:{
         screen:MyAdvertises,
         navigationOptions: () => ({
-            headerStyle: {backgroundColor: 'blue'},
             title: `Ilanlarim`,
             headerLeft: ''
         }),
@@ -72,7 +70,6 @@ const MyApp = createStackNavigator({
     MyAdvertisementDetail:{
         screen:MyAdvertisesDetail,
         navigationOptions: () => ({
-            headerStyle: {backgroundColor: 'blue'},
             title: `Spesifik Ilan Detayi`,
             headerLeft: ''
         }),
@@ -80,8 +77,7 @@ const MyApp = createStackNavigator({
     AdvertisementDetail:{
         screen:AdvertisementDetail,
         navigationOptions: (navigation) => ({
-            headerStyle: {backgroundColor: 'green'},
-            title: 'Ilan Detay Sayfasi',
+            title: 'İlan Detay Sayfasi',
             headerLeft: ''
         }),
     },
@@ -103,9 +99,12 @@ const MyApp = createStackNavigator({
 },{
     headerMode: 'screen',
     navigationOptions: ({navigation}) => ({
-        headerStyle: {backgroundColor: 'green'},
+        headerStyle: {backgroundColor: 'white'},
         title: 'Logged In to your app!',
-        headerLeft: <Text onPress={() => navigation.toggleDrawer()}>Menu</Text>
+        headerLeft: <TouchableOpacity style={{flex:1,backgroundColor:'red'}} onPress={() => navigation.toggleDrawer()}>
+            <Image style={{width:40,height:40,padding:10}} source={require('./Images/download.png')}/>
+        </TouchableOpacity>
+
     })
 });
 

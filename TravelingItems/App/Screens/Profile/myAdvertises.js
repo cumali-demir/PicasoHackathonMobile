@@ -28,7 +28,6 @@ export default class MyAdvertises extends React.Component {
         MyServices.Services.getMyAdvertises(token).then(
             advertises=>{
                 this.setState({advertises,loading:false,error:false,});
-                alert("basardin")
             },
             error=>{
                 this.setState({loading:false,error:true});
@@ -65,7 +64,7 @@ export default class MyAdvertises extends React.Component {
                             ? row.status == 1
                             ? "red"
                             :"blue"
-                            : "yellow" ,bordercolor:'gray', borderRadius:6,justifyContent:'center',margin:5}}>
+                            : "gray" ,bordercolor:'gray', borderRadius:6,justifyContent:'center',margin:5}}>
 
                     <Text style={{fontSize:20,padding:5}}>
                         advertise title: {row.title}

@@ -46,7 +46,7 @@ export default class Login extends React.Component {
                     ).catch(
                         thing=>{
                             this.setState({loading: false, error: true});
-                            console.log("aq")
+                            alert(error)
                         }
                     )
 

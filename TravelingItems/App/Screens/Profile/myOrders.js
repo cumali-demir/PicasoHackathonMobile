@@ -61,11 +61,9 @@ export default class MyOrders extends React.Component {
         MyServices.Services.getMyOffers(token).then(
             offers=>{
                 this.setState({offers,loading:false,error:false,});
-                alert("basardin")
             },
             error=>{
                 this.setState({loading:false,error:true});
-                console.log("AUw");
                 alert(error)
 
             }

@@ -193,10 +193,18 @@ export const Services = {
                 })
         });
     },
-    acceptOrNot(token,_id,status){
+    acceptOrNot(token,_id,advertiseID,status){
+
+        console.log("token",token)
+        console.log("_id",_id)
+
+        console.log("advirtiseID",advertiseID)
+
+        console.log("status",status)
+
 
         return new Promise((resolve, reject) => {
-            axios.post(constant + "u/offer/update",{token,_id,status})
+            axios.post(constant + "u/offer/update",{token,_id,advertiseID,status})
                 .then(response => {
 
                     let data = response.data;

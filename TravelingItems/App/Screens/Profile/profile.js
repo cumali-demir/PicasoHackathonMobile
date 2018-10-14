@@ -15,10 +15,10 @@ export default class Profile extends React.Component {
 
         return(
 
-            <View style={{flex:1,borderWidth:0.5,backgroundColor:'white',bordercolor:'#d6d6d6',height:50, borderRadius:6,justifyContent:'center',margin:5}}>
+            <View style={{flex:1,borderWidth:0.5,backgroundColor:'white',bordercolor:'#ffffff',height:50, borderRadius:6,justifyContent:'center',margin:5}}>
 
 
-                <TouchableOpacity style={{backgroundColor: '#f8ccac'}} onPress={()=>{
+                <TouchableOpacity style={{backgroundColor: '#ffffff'}} onPress={()=>{
 
                     let token = this.props.navigation.state.params.token;
                     if (rowId == 0) {
@@ -30,9 +30,7 @@ export default class Profile extends React.Component {
 
 
                     }if(rowId == 2){
-
                         this.props.navigation.navigate("MyOrders",{token:this.props.navigation.state.params.token})
-
                     }
 
                     }}>
@@ -85,11 +83,10 @@ const styles = StyleSheet.create({
         marginTop : 9,
         flex:1,
         width:Dimensions.get('window').width,
-        // height:Dimensions.get('window').width* 2/3,
         backgroundColor:'red',
     },
     list:{
-        backgroundColor: '#f8e4db',
+        backgroundColor: 'white',
         paddingVertical: 8,
         paddingHorizontal: 14
     },
