@@ -9,8 +9,9 @@ export default class Profile extends React.Component {
         this.renderRow = this.renderRow.bind(this)
     }
 
-    renderRow(row){
+    renderRow(row,a,rowId){
 
+        console.log("qweqweqweqwe",rowId)
 
         return(
 
@@ -18,8 +19,21 @@ export default class Profile extends React.Component {
 
 
                 <TouchableOpacity style={{backgroundColor: '#f8ccac'}} onPress={()=>{
-                    console.log("tik tik");
-                    this.props.navigation.navigate("MyOrders",{token:this.props.navigation.state.params.token})
+
+                    let token = this.props.navigation.state.params.token;
+                    if (rowId == 0) {
+                        this.props.navigation.navigate("UserInfo",{token:this.props.navigation.state.params.token})
+
+                    }
+                    if(rowId == 1){
+                        this.props.navigation.navigate("MyAdvertisements",{token:this.props.navigation.state.params.token})
+
+
+                    }if(rowId == 2){
+
+                        this.props.navigation.navigate("MyOrders",{token:this.props.navigation.state.params.token})
+
+                    }
 
                     }}>
 

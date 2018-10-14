@@ -137,7 +137,7 @@ export const Services = {
                     let success = data.success;
                     if (success){
                         console.log(response);
-                        resolve(data.token)
+                        resolve(data.advertise)
                     }else{
                         reject(data.message)
                     }
@@ -161,6 +161,49 @@ export const Services = {
                     if (success){
                         console.log(response);
                         resolve(data.offer)
+                    }else{
+                        reject(data.message)
+                    }
+
+                }, error => {
+                    console.log("bu hata ne hatasi acaba");
+                    reject(error)
+                })
+        });
+    },
+
+    myAdvertiseDetail(token,_id){
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/offer/advertise",{token,_id})
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        resolve(data.offer)
+                    }else{
+                        reject(data.message)
+                    }
+
+                }, error => {
+                    console.log("bu hata ne hatasi acaba");
+                    reject(error)
+                })
+        });
+    },
+    acceptOrNot(token,_id,status){
+
+        return new Promise((resolve, reject) => {
+            axios.post(constant + "u/offer/update",{token,_id,status})
+                .then(response => {
+
+                    let data = response.data;
+                    let success = data.success;
+                    if (success){
+                        console.log(response);
+                        resolve(success)
                     }else{
                         reject(data.message)
                     }

@@ -27,19 +27,6 @@ export default class MyOrders extends React.Component {
     renderRow(row){
 
         console.log("MYROW",row);
-
-        // switch (row.status) {
-        //     case 0:
-        //         this.setState({backgroundColor:'gray'});
-        //         break;
-        //     case 1:
-        //         this.setState({backgroundColor:'blue'});
-        //         break;
-        //     case 2:
-        //         this.setState({backgroundColor:'red'});
-        //         break;
-        // }
-
         return(
 
             <TouchableOpacity onPress={()=>{}}
@@ -49,13 +36,16 @@ export default class MyOrders extends React.Component {
                         ? row.status == 1
                             ? "red"
                             :"blue"
-                        : "yellow" ,bordercolor:'gray',height:80, borderRadius:6,justifyContent:'center',margin:5}}>
+                        : "yellow" ,bordercolor:'gray', borderRadius:6,justifyContent:'center',margin:5}}>
+
                     <Text style={{fontSize:20,padding:5}}>
                         advertise title: {row.advertiseID.title}
                     </Text>
+
                     <Text style={{fontSize:20,padding:5}}>
                         advertise title: {row.advertiseID.declaration}
                     </Text>
+
                     <Text style={{fontSize:20,padding:5}}>
                         Budget {row.advertiseID.budget}
                     </Text>

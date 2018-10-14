@@ -10,6 +10,10 @@ import LogOut from "./Screens/Authentication/logOut";
 import Profile from "./Screens/Profile/profile";
 import MyOrders from "./Screens/Profile/myOrders"
 import MyAdvertises from "./Screens/Profile/myAdvertises"
+import MyAdvertisesDetail from "./Screens/Profile/myAdvertisesDetail"
+
+import UserInfo from "./Screens/Profile/myAdvertises"
+
 
 
 
@@ -41,7 +45,7 @@ const MyApp = createStackNavigator({
         screen: Login,
         navigationOptions: () => ({
             headerStyle: {backgroundColor: 'yellow'},
-            title: `Siparislerim`,
+            title: `Siparisler`,
             headerLeft: null
 
         }),
@@ -65,6 +69,14 @@ const MyApp = createStackNavigator({
             headerLeft: ''
         }),
     },
+    MyAdvertisementDetail:{
+        screen:MyAdvertisesDetail,
+        navigationOptions: () => ({
+            headerStyle: {backgroundColor: 'blue'},
+            title: `Spesifik Ilan Detayi`,
+            headerLeft: ''
+        }),
+    },
     AdvertisementDetail:{
         screen:AdvertisementDetail,
         navigationOptions: (navigation) => ({
@@ -73,7 +85,14 @@ const MyApp = createStackNavigator({
             headerLeft: ''
         }),
     },
-
+    UserInfo:{
+        screen:UserInfo,
+        navigationOptions: (navigation) => ({
+            headerStyle: {backgroundColor: 'green'},
+            title: 'Ilan Detay Sayfasi',
+            headerLeft: ''
+        }),
+    },
     // ForgotPassword:{
     //   screen: "Will Create"
     // },
